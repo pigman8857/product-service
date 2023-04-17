@@ -1,8 +1,8 @@
 {
   "name": "product-service",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "product service",
+  "main": "index.ts",
   "scripts": {
     "test": "NODE_ENV=unittest jest --colors --detectOpenHandles",
     "start-dev": "ts-node src/server.ts",
