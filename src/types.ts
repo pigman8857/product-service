@@ -1,15 +1,38 @@
 import { FastifyRequest, FastifyReply, FastifyInstance } from "fastify";
 import { Knex } from "knex";
-
+import { Channel, Connection } from 'amqplib';
 //#region merge declare Fastify types
 declare module "fastify" {
   interface FastifyInstance {
     db: DbRepos;
     httpClient: HttpClient;
+    amqp: MessageQueue
   }
 }
 
 //#endregion
+
+//#region MessageQueue types
+export interface MessageQueue{
+  channel: Channel;
+  connect: Connection;
+}
+
+export interface AMQPSettings {
+  protocol: string;
+  hostname: string;
+  // the default value is 5672
+  port: number;
+  // the default value is guest
+  username: string;
+  // the default value is guest
+  password: string;
+  // the default value is empty
+  vhost: string;
+}
+
+//#endrgion
+
 
 //#region DB types
 
@@ -40,6 +63,7 @@ export interface ConfigInstance {
   serviceHost: string;
   servicePort: string;
   db: DBInstanceSettings;
+  amqp: AMQPSettings;
 }
 
 //#endregion

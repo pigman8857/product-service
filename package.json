@@ -18,10 +18,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/amqplib": "^0.10.1",
     "@types/jest": "^29.2.6",
     "axios": "^1.2.3",
     "dotenv": "^16.0.3",
     "fastify": "^4.11.0",
+    "fastify-amqp": "^1.1.0",
     "knex": "^2.4.2",
     "pg": "^8.8.0"
   },

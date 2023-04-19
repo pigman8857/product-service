@@ -4,40 +4,40 @@ import { SchemaProps, Handlers } from "../types";
 const index = (fastifyInstance: FastifyInstance, handlers: Handlers) => {
   return () => {
 
-    const getAdvertiserParamsProp: SchemaProps = {
+    const getParamsProp: SchemaProps = {
       type: "object",
       properties: {
         id: { type: "number" },
       },
     };
 
-    const getAdvertiserSchema: FastifySchema = {
-      params: getAdvertiserParamsProp,
+    const getSchema: FastifySchema = {
+      params: getParamsProp,
     };
 
-    const eventsSchema: FastifySchema = {
-      //   params: getAdvertiserParamsProp,
-      body: {
-        type: "object",
-        properties: {
-          eventName: { type: "string" },
-          data: {
-            type: "object",
-            additionalProperties: {
-              anyOf: [{ type: "string" }, { type: "number" }, { type : "object"}],
-            },
-          },
-        },
-      },
-      response: {
-        201: {
-          type: "object",
-          properties: {
-            status: { type: "string" },
-          },
-        },
-      },
-    };
+    // const eventsSchema: FastifySchema = {
+    //   //   params: getAdvertiserParamsProp,
+    //   body: {
+    //     type: "object",
+    //     properties: {
+    //       eventName: { type: "string" },
+    //       data: {
+    //         type: "object",
+    //         additionalProperties: {
+    //           anyOf: [{ type: "string" }, { type: "number" }, { type : "object"}],
+    //         },
+    //       },
+    //     },
+    //   },
+    //   response: {
+    //     201: {
+    //       type: "object",
+    //       properties: {
+    //         status: { type: "string" },
+    //       },
+    //     },
+    //   },
+    // };
 
     const readEntryHandler = handlers.readEntryHandler(fastifyInstance);
     const healthCheckHandler = handlers.healthCheckHandler(fastifyInstance);
@@ -45,9 +45,9 @@ const index = (fastifyInstance: FastifyInstance, handlers: Handlers) => {
     fastifyInstance.get("/health", healthCheckHandler);
 
     fastifyInstance.get(
-      "/advertisers/:id",
+      "/products/:id",
       {
-        schema: getAdvertiserSchema,
+        schema: getSchema,
       },
       readEntryHandler
     );
